@@ -30,8 +30,8 @@ public class TaskController {
     }
 
    @RequestMapping(method = RequestMethod.GET, value = "getTaskID")
-   public TaskDto getTaskID() {
-      return (TaskDto) taskMapper.mapToTaskDto(service.getId(1L));
+   public TaskDto getTaskID() throws TaskNotFoundException {
+      return (TaskDto) taskMapper.mapToTaskDto(service.getId(1L).orElseThrow(TaskNotFoundException::new));
       //  return new ArrayList<>();
    }
 
